@@ -1,6 +1,6 @@
 using System.Net;
 
-namespace dotnet_cute.attributes;
+namespace DotnetCute.Attributes;
 
 [AttributeUsage(AttributeTargets.Class)]
 public class HttpResponseCode : Attribute

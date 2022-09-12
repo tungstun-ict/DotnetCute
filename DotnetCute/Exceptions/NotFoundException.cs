@@ -1,7 +1,7 @@
 using System.Net;
-using dotnet_cute.attributes;
+using DotnetCute.Attributes;
 
-namespace dotnet_cute.exceptions;
+namespace DotnetCute.Exceptions;
 
 [HttpResponseCode(Code = HttpStatusCode.NotFound)]
 public class NotFoundException : ResponseException

@@ -1,4 +1,4 @@
-namespace dotnet_cute.contracts.responses;
+namespace DotnetCute.Contracts.Responses;
 
 public struct ErrorResponse
 {

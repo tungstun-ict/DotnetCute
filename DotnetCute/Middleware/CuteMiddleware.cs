@@ -1,12 +1,15 @@
 using System.Reflection;
-using dotnet_cute.attributes;
-using dotnet_cute.contracts.responses;
-using dotnet_cute.exceptions;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using DotnetCute.Attributes;
+using DotnetCute.Contracts.Responses;
+using DotnetCute.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
-namespace dotnet_cute.middleware;
+namespace DotnetCute.Middleware;
 
 public class CuteMiddleWare
 {
@@ -43,12 +46,15 @@ public class CuteMiddleWare
             response.StatusCode = (int)attribute.Code;
         }
 
-        // Creating a response body
-        await context.Response.WriteAsJsonAsync(new ErrorResponse
+        var body = new ErrorResponse
         {
             Code = exceptionType.ShortDisplayName().Replace(nameof(Exception), string.Empty),
             Description = exception.Message,
             Additional = exception.Additional
-        });
+        };
+
+        context.Response.ContentType = "application/json";
+        // Creating a response body
+        await context.Response.WriteAsync(JsonConvert.SerializeObject(body));
     }
 }
