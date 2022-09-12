@@ -7,4 +7,10 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="attributes" />
+      <Folder Include="exceptions" />
+      <Folder Include="middleware" />
+    </ItemGroup>
+
 </Project>
