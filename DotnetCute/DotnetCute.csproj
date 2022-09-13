@@ -9,7 +9,6 @@
     <ItemGroup>
       <Folder Include="Attributes" />
       <Folder Include="Exceptions" />
-      <Folder Include="Middleware" />
     </ItemGroup>
 
     <ItemGroup>
@@ -17,6 +16,7 @@
       <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
       <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.2.0" />
       <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="6.0.0-preview.4.21253.5" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.8" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.2-beta2" />
     </ItemGroup>

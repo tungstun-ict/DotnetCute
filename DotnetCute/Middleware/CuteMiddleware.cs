@@ -1,10 +1,9 @@
 using System.Reflection;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using DotnetCute.Attributes;
 using DotnetCute.Contracts.Responses;
 using DotnetCute.Exceptions;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -14,10 +13,14 @@ namespace DotnetCute.Middleware;
 public class CuteMiddleWare
 {
     private readonly RequestDelegate _next;
+    private readonly CuteOptions _options;
+    private readonly ILogger<CuteMiddleWare> _logger;
 
-    public CuteMiddleWare(RequestDelegate next, ILogger<CuteMiddleWare> logger)
+    public CuteMiddleWare(RequestDelegate next, ILogger<CuteMiddleWare> logger, CuteOptions options)
     {
         _next = next;
+        _logger = logger;
+        _options = options;
     }
 
     public async Task InvokeAsync(HttpContext httpContext)
@@ -48,13 +51,28 @@ public class CuteMiddleWare
 
         var body = new ErrorResponse
         {
-            Code = exceptionType.ShortDisplayName().Replace(nameof(Exception), string.Empty),
+            Error = exceptionType.ShortDisplayName().Replace(nameof(Exception), string.Empty),
             Description = exception.Message,
-            Additional = exception.Additional
+            Additional = exception.Additional,
         };
+        
+        if(_options.ShowTimeStamp)
+            body.Timestamp = DateTime.Now;
+
+        if (_options.ShowStatusCode && attribute != null)
+            body.Status = (int) attribute.Code;
+
+        if (_options.ShowPath)
+            body.Path = context.Request.Path;
+
+        if (_options.ShowStacktrace)
+            body.StackTrace = exception.StackTrace;
 
         context.Response.ContentType = "application/json";
         // Creating a response body
-        await context.Response.WriteAsync(JsonConvert.SerializeObject(body));
+        await context.Response.WriteAsync(JsonConvert.SerializeObject(body, Formatting.Indented, new JsonSerializerSettings
+        {
+            NullValueHandling = NullValueHandling.Ignore
+        }));
     }
 }
