@@ -26,6 +26,7 @@ app.UseMiddleware<CuteMiddleWare>(new CuteOptions()
     ShowTimeStamp = true,
     ShowPath = true,
     ShowLogs = true,
+    ShowStacktrace = false,
 });
 
 app.UseAuthorization();

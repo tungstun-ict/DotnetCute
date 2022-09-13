@@ -56,6 +56,7 @@ public class CuteMiddleWare
             Additional = exception.Additional,
         };
         
+        // Adding optional parameters
         if(_options.ShowTimeStamp)
             body.Timestamp = DateTime.Now;
 

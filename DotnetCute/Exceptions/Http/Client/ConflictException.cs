@@ -1,0 +1,13 @@
+﻿using System.Net;
+using DotnetCute.Attributes;
+
+namespace DotnetCute.Exceptions.Http.Client;
+
+[HttpResponseCode(Code = HttpStatusCode.Conflict)]
+public class ConflictException : ResponseException
+{
+    public ConflictException(string description, params string[] additional) 
+        : base(description, additional)
+    {
+    }
+}

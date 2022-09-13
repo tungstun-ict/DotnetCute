@@ -2,9 +2,9 @@
 
 public struct CuteOptions
 {
-    public bool ShowStatusCode { get; set; }
-    public bool ShowTimeStamp { get; set; }
-    public bool ShowPath { get; set; }
-    public bool ShowStacktrace { get; set; }
-    public bool ShowLogs { get; set; }
+    public bool ShowStatusCode { get; init; }
+    public bool ShowTimeStamp { get; init; }
+    public bool ShowPath { get; init; }
+    public bool ShowStacktrace { get; init; }
+    public bool ShowLogs { get; init; }
 }
