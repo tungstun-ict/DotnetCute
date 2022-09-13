@@ -15,7 +15,7 @@ public class CuteMiddleWare
     private readonly CuteOptions _options;
     private readonly ILogger<CuteMiddleWare> _logger;
 
-    public CuteMiddleWare(RequestDelegate next, ILogger<CuteMiddleWare> logger, CuteOptions options)
+    public CuteMiddleWare(RequestDelegate next, ILogger<CuteMiddleWare> logger, CuteOptions options = new CuteOptions())
     {
         _next = next;
         _logger = logger;
