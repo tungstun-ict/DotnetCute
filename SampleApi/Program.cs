@@ -24,7 +24,8 @@ app.UseMiddleware<CuteMiddleWare>(new CuteOptions()
 {
     ShowStatusCode = true,
     ShowTimeStamp = true,
-    ShowPath = true
+    ShowPath = true,
+    ShowLogs = true,
 });
 
 app.UseAuthorization();

@@ -3,7 +3,6 @@ using DotnetCute.Attributes;
 using DotnetCute.Contracts.Responses;
 using DotnetCute.Exceptions;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -46,9 +45,10 @@ public class CuteMiddleWare
         // If there is an attribute we set the response status code to the content of the attribute
         if (attribute is not null)
         {
-            response.StatusCode = (int)attribute.Code;
+            response.StatusCode = (int) attribute.Code;
         }
 
+        // Assembling the body
         var body = new ErrorResponse
         {
             Error = exceptionType.ShortDisplayName().Replace(nameof(Exception), string.Empty),
@@ -68,8 +68,11 @@ public class CuteMiddleWare
         if (_options.ShowStacktrace)
             body.StackTrace = exception.StackTrace;
 
+        if (_options.ShowLogs)
+            _logger.Log(LogLevel.Error, $"[{body.Timestamp}]: [{body.Error}Exception] was thrown. [Status]: {body.Status}, [Description]: {body.Description}, [Path]: {body.Path}");
+
+        // Creating a response
         context.Response.ContentType = "application/json";
-        // Creating a response body
         await context.Response.WriteAsync(JsonConvert.SerializeObject(body, Formatting.Indented, new JsonSerializerSettings
         {
             NullValueHandling = NullValueHandling.Ignore
