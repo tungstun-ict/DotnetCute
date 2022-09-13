@@ -11,7 +11,6 @@
         <Copyright>Tungstun</Copyright>
         <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/tungstun-ict/DotnetCute</PackageProjectUrl>
-        <PackageLicenseUrl>https://github.com/tungstun-ict/DotnetCute/blob/main/LICENSE</PackageLicenseUrl>
         <PackageIcon>logo.png</PackageIcon>
         <RepositoryUrl>https://github.com/tungstun-ict/DotnetCute</RepositoryUrl>
         <PackageTags>Exception, Throwing, Error, Custom, Custom Response, Error Handling, Custom Exceptions, Middleware</PackageTags>
@@ -28,9 +27,8 @@
       <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.0" />
       <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
       <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.2.0" />
-      <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="6.0.0-preview.4.21253.5" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.8" />
-      <PackageReference Include="Newtonsoft.Json" Version="13.0.2-beta2" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     </ItemGroup>
 
     <ItemGroup>
