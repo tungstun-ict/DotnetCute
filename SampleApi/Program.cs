@@ -20,7 +20,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseMiddleware<CuteMiddleWare>();
+app.UseMiddleware<CuteMiddleWare>(new CuteOptions()
+{
+    ShowStatusCode = true,
+    ShowTimeStamp = true,
+    ShowPath = true,
+    ShowLogs = true,
+    ShowStacktrace = false,
+});
 
 app.UseAuthorization();
 
